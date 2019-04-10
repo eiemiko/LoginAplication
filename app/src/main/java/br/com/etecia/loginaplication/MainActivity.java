@@ -1,10 +1,13 @@
 package br.com.etecia.loginaplication;
 
+import android.content.Intent;
+import android.net.wifi.hotspot2.pps.HomeSp;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,12 +21,31 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                TextView lbl_user = findViewById(R.id.lbl_user);
-                TextView lbl_pass = findViewById(R.id.lbl_pass);
-                String username = lbl_user.getText().toString();
-                String password = lbl_pass.getText().toString();
 
+
+                    TextView txt_user = findViewById(R.id.txt_user);
+                    TextView txt_pass = findViewById(R.id.txt_pass);
+                    TextView txtteste = findViewById(R.id.txtteste);
+                    String username = txt_user.getText().toString();
+                    String password = txt_pass.getText().toString();
+
+                        if (username.equals("etecia") & password.equals("etecia")){
+                            System.out.println("logado com sucesso");
+
+                            Intent intentGoHome = new Intent(MainActivity.this, HomeActivity.class);
+                            startActivity(intentGoHome);
+                        }
+                        else{
+                            System.out.println("erro");
+                            //txtteste.setText("Login ou Senha incorretos");
+                            alert("Deu ruim");
+                        }
             }
+
         });
+    }
+    private void alert (String message){
+        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+
     }
 }
